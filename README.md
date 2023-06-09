@@ -16,5 +16,6 @@
 
 ## Struktur
 
-- ./Till / ./Mads / ./Maxi &rarr; private Projektordner
+- ./Till / ./Mads / ./Maxi &rarr; "private" Projektordner
 - set &rarr; alles was besprochen wurde und für die Aufführung gebraucht wird
+- sketch/{soundart:ambient|pluck|drums}-{name}-{datum}.scd
