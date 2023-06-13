@@ -16,6 +16,6 @@
 ## Struktur
 
 - ./Till / ./Mads / ./Maxi &rarr; "private" Projektordner
-- sketch/{soundart:ambient|pluck|drums}-{name}-{datum}.scd
+- sketch/{soundart:ambient|pluck|drums|hell(gå)}--{name}--{datum}.scd
 - set &rarr; alles was besprochen wurde und für die Aufführung gebraucht wird
 - ext &rarr; codebase from other people to try out
