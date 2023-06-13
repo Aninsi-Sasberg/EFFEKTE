@@ -11,14 +11,13 @@ t.tempo = (60/60);
 
 
 
-
 (
 ~channel = 5;
 ~channelVolume = 14;
 MIDIClient.init;
-//m = MIDIOut.new(0);
+m = MIDIOut.new(1);
 //n = MIDIIn.newByName("Launch Control XL", "Launch Control XL");
-m = MIDIOut.newByName("MidiGateway", "Port 1");
+//m = MIDIOut.newByName("MidiGateway", "MidiGateway");
 //~midiIn = MIDIIn.new(1);
 (
 CmdPeriod.add({
@@ -42,7 +41,6 @@ CmdPeriod.add({
 });
 );
 )
-
 
 
 
@@ -96,9 +94,8 @@ CmdPeriod.add({
 		m.noteOff(~channel, string, 0);
 	}
 });
-~play.(0, 0, 4, 2);
+//~play.(1, 2, 4, 2);
 
-//no death
 (
 ~grip = { arg hand, string, fret;
 	var midiNote, amountFrets;
@@ -107,6 +104,7 @@ CmdPeriod.add({
 		midiNote = ~midiAt.value(hand % 2, string % 6, fret % amountFrets);
 		m.noteOn(~channel, midiNote, 1);
 		0.01.wait;
+		// turned of dampening for improved tapping
 		//m.noteOff(~channel, 6 + (string % 6), 0);
 	}
 });
@@ -118,12 +116,12 @@ CmdPeriod.add({
 	if (hand % 2 == 0, {amountFrets=5},{amountFrets=7});
 	fork{
 		midiNote = ~midiAt.value(hand % 2, string % 6, fret % amountFrets);
-		m.noteOn(~channel, 6 + (string % 6), 1);
+		//m.noteOn(~channel, 6 + (string % 6), 1);
 		0.03.wait;
 		m.noteOff(~channel, midiNote, 0);
 	}
 });
-~release.(0,0,0);
+//~release.(0,0,0);
 
 (
 ~releaseAll = { arg hand, speed = 2;
@@ -223,29 +221,6 @@ CmdPeriod.add({
 });
 //~damp.value(1, 1);
 
-(
-~dampAll = {
-	6.do{ arg i;
-		m.noteOn(~channel, 6 + (i % 6), 1);
-	};
-	0.2.wait;
-	6.do{ arg i;
-		m.noteOff(~channel, 6 + (i % 6), 1);
-	};
-});
-
-(
-~gripdampalloffbut = { arg string;
-	6.do{ arg i;
-	if(i == string, {
-			m.noteOff(~channel, 6 + (i % 6), 0);
-		},
-		{
-			m.noteOn(~channel, 6 + (i % 6), 1);
-		});
-	};
-});
-
 //finger in der nähe der Saite
 (
 ~setFingers = { arg hand, onOff;
@@ -275,7 +250,7 @@ CmdPeriod.add({
 		});
 	});
 });
-~setFingers.(1, 1);
+//~setFingers.(0, 1);
 
 (
 ~moveFinger = { arg finger, position;
@@ -479,10 +454,6 @@ CmdPeriod.add({
 	~moveHip.(2);
 });
 )
-
-
-
-
 
 (
 // Panic Button, Sendet Note-Off Nachrichten an alle Noten
