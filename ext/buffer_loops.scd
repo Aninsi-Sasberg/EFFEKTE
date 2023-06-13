@@ -2,9 +2,8 @@
 o = Server.default.options;
 o.numInputBusChannels = 16;
 o.numOutputBusChannels = 16;
+s.options.memSize_(65536 * 4);
 s.reboot;
-s.scope;
-s.plotTree;
 )
 
 (// allocate a Buffer

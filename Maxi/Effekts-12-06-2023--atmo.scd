@@ -23,8 +23,8 @@ SynthDef(\atmo, {
 
 	bss1 = Saw.ar(ns1);
 	bss2 = Saw.ar(ns2);
-	// snd = JPverb.ar([flt.ar(bss1, ns1 * 2), flt.ar(bss2, ns2 * 8)] + inn * env, 5.0, 0.6, 3);
-	snd = inn * env;
+	snd = JPverb.ar([flt.ar(bss1, ns1 * 2), flt.ar(bss2, ns2 * 8)] + inn * env, 5.0, 0.6, 3);
+	// snd = inn * env;
 
 	snd = Splay.ar(snd);
 
@@ -51,4 +51,4 @@ Pdef(\atmoo,
 )
 )
 
-{JPverb.ar(SoundIn.ar(8), 20, 0.5, 4) * SinOsc.ar(LFNoise2.kr(0.4).range(40, 600));}.play();
+{InsideOut.ar(SoundIn.ar(8));}.play();

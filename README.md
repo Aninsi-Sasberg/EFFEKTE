@@ -7,7 +7,6 @@
 
 ## Probleme
 
-- können keinen gemeinsamen ProxySpace benutzen
 
 ## To-Do
 

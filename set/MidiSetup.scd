@@ -223,6 +223,29 @@ CmdPeriod.add({
 });
 //~damp.value(1, 1);
 
+(
+~dampAll = {
+	6.do{ arg i;
+		m.noteOn(~channel, 6 + (i % 6), 1);
+	};
+	0.2.wait;
+	6.do{ arg i;
+		m.noteOff(~channel, 6 + (i % 6), 1);
+	};
+});
+
+(
+~gripdampalloffbut = { arg string;
+	6.do{ arg i;
+	if(i == string, {
+			m.noteOff(~channel, 6 + (i % 6), 0);
+		},
+		{
+			m.noteOn(~channel, 6 + (i % 6), 1);
+		});
+	};
+});
+
 //finger in der nähe der Saite
 (
 ~setFingers = { arg hand, onOff;
