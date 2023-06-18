@@ -1,24 +1,15 @@
-(//init+Metronom. nur einmal ausführen
-~postinfo = { t.beats.postln; 1;};
-t = TempoClock.new(60/60).permanent_(true);
-t.sched(0, {~postinfo.()});
-q = 7; // z/q Takt d.h. 4/4
-z = 7;
-Tdef.defaultQuant = q;
+// Midi Setup and CmdPeriod
+
+(
+MIDIClient.init;
 )
-
-t.tempo = (60/60);
-
-
 
 (
 ~channel = 5;
 ~channelVolume = 14;
 MIDIClient.init;
-m = MIDIOut.new(1);
-//n = MIDIIn.newByName("Launch Control XL", "Launch Control XL");
+m = MIDIOut.new(0);
 //m = MIDIOut.newByName("MidiGateway", "MidiGateway");
-//~midiIn = MIDIIn.new(1);
 (
 CmdPeriod.add({
 	"MIDI Note-Off".postln;
@@ -42,7 +33,7 @@ CmdPeriod.add({
 );
 )
 
-
+// Helga Functions
 
 (
 (

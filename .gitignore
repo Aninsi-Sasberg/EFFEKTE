@@ -69,3 +69,6 @@ Temporary Items
 # SYNCTHING
 # Syncthing caches
 .stversions
+
+# FLStudi
+.flp
