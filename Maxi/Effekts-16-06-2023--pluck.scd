@@ -26,7 +26,7 @@ SynthDef(\guitar, {
 
 	snd = Pluck.ar(snd);
 
-	snd = WaveLoss.ar(snd, MouseY.kr(0, 20.0, 0, 0.20), 20, 2);
+	snd = WaveLoss.ar(snd, MouseX.kr(0, 20.0, 0, 0.20), 20, 2);
 
 	snd = snd * env;
 
@@ -41,16 +41,17 @@ SynthDef(\guitar, {
 (
 Pdef(\uhh, Pbind(
 	\instrument, \guitar,
-	\freq, p({ inf.do{
+/*	\freq, p({ inf.do{
 		arg i = 0;
-		var new_freq, freq = 70, steps = 12;
+		var new_freq, freq = 30.midicps, steps = 12;
 
 		new_freq = freq * (2 ** (i % steps / steps));
 		("i: " ++ (i % steps)).postln;
 		("freq: " ++ new_freq).postln;
 		new_freq.yield;
-	}}),
-	\dur, 1/3,
+	}}),*/
+	\freq, Pseq([30, 32, 33, 37, 35, 42, 18] + 0 - 0 , inf),
+	\dur, 1/2,
 	\sus, 1/4,
 	\verbsus, 5,
 )).play;

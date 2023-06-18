@@ -1,6 +1,9 @@
 import os
 
 quote_lines = []
+wavfiles = []
+mouthlines = []
+directory_in_str = "/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/Maxi/tts"
 
 filename = input(f'Enter your filename: ')
 
@@ -17,5 +20,34 @@ quote = "".join(quote_lines)
 with open(f"{filename}.txt", "w+", encoding="utf-8") as textfile:
     textfile.writelines(quote)
 
-
 os.system(f'say -rate=6 {filename} -o "{filename}.wav" --data-format=LEI16@15000')
+
+directory = os.fsencode(directory_in_str)
+    
+for file in os.listdir(directory):
+     filename = os.fsdecode(file)
+     if filename.endswith(".wav"): 
+         wavfiles.append(os.path.join(directory_in_str, filename))
+
+
+with open("/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/set/mouth.scd", "w+", encoding="utf-8") as scdfile:
+    mouthlines.append("(\n~pb_amp = 0.5;\n~pb_rate = 1/1;\n\n")
+    
+    for wavfile in wavfiles:
+        filename, extension = os.path.splitext(os.path.basename(wavfile))
+        mouthlines.append(f'~b_{filename} = Buffer.read(s, "{wavfile}");\n')
+    mouthlines.append("\n")
+    
+    for wavfile in wavfiles:
+        filename, extension = os.path.splitext(os.path.basename(wavfile))
+        mouthlines.append(f'SynthDef(\s_{filename}, {{\n\tvar snd;\n\n\tsnd = PlayBuf.ar(1, ~b_{filename}, ~pb_rate, doneAction: 2);\n\n\tOut.ar(1, snd * ~pb_amp)\n}}).add;\n\n')
+    
+    mouthlines.append(")\n\n\n")
+
+    for wavfile in wavfiles:
+        filename, extension = os.path.splitext(os.path.basename(wavfile))
+        mouthlines.append(f'//{filename}{extension}\n')
+        mouthlines.append(f'(\nPdef(\p_{filename}, Pbind(\n\t\\instrument, \\s_{filename},\n\t\\dur, 1/4,\n)).play;\n)\n')
+        mouthlines.append(f'Pdef(\p_{filename}).stop;\n\n')
+
+    scdfile.writelines(mouthlines)
