@@ -18,7 +18,7 @@ SynthDef(\bass, {
 
 	snd = Splay.ar(snd) * env;
 
-	snd = (GVerb.ar(snd, 30, v_suss, 0.2, 0.2, 30, 0.0) * 0.15) + (snd * 0.25);
+	// snd = (GVerb.ar(snd, 30, v_suss, 0.2, 0.2, 30, 0.0) * 0.15) + (snd * 0.25);
 
 	snd = snd.clip(-1.0, 1.0);
 
@@ -32,31 +32,32 @@ var fil = Array.interpolation(100, 40, 25 + (24 * 4));
 Pdef(\bass, Pbind(
 	\instrument, \bass,
 
-	// \amp, 0.1,
-	\amp, 0.2,
+	// \amp, 0.0,
+	\amp, 0.0,
 	// \amp, 0.25,
-	// \midinote, Pseq([30, 32, 33, 37, 35, 42, 18] + 1 - 0, inf),
-	\midinote, Prand([0, 2, 3, 7, 5, 12, -12] + 25 + 12 - 0, inf),
+	// \amp, 0.25,
+	\midinote, Pseq([30, 32, 33, 37, 35, 42, 18] + 1 - 0, inf),
+	// \midinote, Prand([0, 2, 3, 7, 5, 12, -12] + 25 + 12 - 0, inf),
 	// \midinote, Pseq([0, 2, 3, 5, 7, 8] + 25 + 0, inf),
 	// \midinote, 25,
 
 	// \dur, 1/12,
-	\dur, 1/3,
-	\dur, Pseq([Pbjorklund2(8, 9) * 1/3], inf),
+	\dur, 1/6,
+	// \dur, Pseq([Pbjorklund2(7, 9) * 1/16], inf),
 
-	\filfreq, Prand((fil ++ fil.reverse).midicps, inf),
-	// \filfreq, Pseq(((fil ++ fil.reverse) + 0).midicps, inf),
+	// \filfreq, Prand((fil ++ fil.reverse).midicps, inf),
+	\filfreq, Pseq(((fil ++ fil.reverse) + 0).midicps, inf),
 	// \filfreq, Pseq(([fil, fil.reverse].lace(50)).midicps, inf),
 
-	\atk, 1/10,
+	\atk, 1/100,
 	\sus, 1/64,
 	\v_suss, 1/8,
 
-	\dist, 0.5,
+	\dist, 7,
 	// \dist, 2,
 	// \dist, 10,
 	// \dist, 30,
-	\f_q, 0.5,
+	\f_q, 0.01,
 
 )).play(l);
 )

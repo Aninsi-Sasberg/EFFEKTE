@@ -1,3 +1,5 @@
+s.killAll;
+
 // Server + LinkClock
 (
 l = LinkClock(1).latency_(s.latency);
@@ -10,6 +12,7 @@ o.memSize_(65536 * 4);
 
 s.boot();
 )
+
 
 // CMD + .
 (

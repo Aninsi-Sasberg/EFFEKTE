@@ -41,7 +41,7 @@ Pdef(\rifa, Pbind(
 	}}),
 
 	\amp, 0.0,
-	\amp, 1.0,
+	// \amp, 1.0,
 
 	// \dur, 1/5,
 	\dur, Pseq([Pbjorklund2(3, 7)] * 1/6, inf),
@@ -50,12 +50,12 @@ Pdef(\rifa, Pbind(
 
 	\amp, 1/24,
 	\fac, Prand([1.0, 2.0, 0.5, 0.25, 4, 2.5, 0.1, 3.0], inf),
-	\dist, 20,
+	\dist, 5,
 	\wv_ls, 50,
 )).play(l);
 )
 
 Pdef(\rifa).fadeTime = 5;
-Pdef(\rifa).fadeTime = 40;
+Pdef(\rifa).fadeTime = 10;
 
 Pdef(\rifa).stop;

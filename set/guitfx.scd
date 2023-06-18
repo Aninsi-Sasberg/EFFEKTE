@@ -5,7 +5,7 @@ SynthDef(\fx, {
 
 	mod = LFTri.kr(1/6, 3).range(25.midicps, (25 + 12).midicps);
 	// mod = LFTri.kr(1/6, 3).range(200, 800);
-	// mod = LFTri.kr(1/4, 3).range(400, 1000);
+	// mod = LFTri.kr(1/6, 3).range(400, 1000);
 	vib = SinOsc.ar(1/6).linlin(-1.0, 1.0, 0.9, 1.1);
 	del_mod = SinOsc.ar(0.2);
 
@@ -18,7 +18,7 @@ SynthDef(\fx, {
 
 	snd = BLowPass4.ar(snd, mod * vib, 0.01);
 
-	snd = (BLowPass4.ar(snd, mod * vib, 0.01) * 0.1) + (snd * 0.6);
+	// snd = (BLowPass4.ar(snd, mod * vib, 0.01) * 0.1) + (snd * 0.6);
 
 	// ballert zu sehr
 	// snd = Ringz.ar(snd, mod, 0.2, 0.1);
@@ -39,7 +39,7 @@ Pdef(\guitfx, Pmono(
 	\fx,
 	\amp, 0.0,
 	// \amp, 0.01,
-	// \amp, 0.03,
+	// \amp, 0.02,
 	// \amp, 0.04,
 	// \amp, 0.08,
 
@@ -50,7 +50,7 @@ Pdef(\guitfx, Pmono(
 )).play(l);
 )
 
-Pdef(\guitfx).fadeTime = 5;
+Pdef(\guitfx).fadeTime = 1;
 Pdef(\guitfx).fadeTime = 20;
 
 Pdef(\guitfx).stop;
