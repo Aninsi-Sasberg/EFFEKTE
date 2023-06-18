@@ -5,6 +5,11 @@ wavfiles = []
 mouthlines = []
 directory_in_str = "/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/Maxi/tts"
 
+pb_out = "3"
+pb_amp = "2"
+pb_rate = "1/5"
+pb_dur = "2"
+
 filename = input(f'Enter your filename: ')
 
 while True:
@@ -31,7 +36,7 @@ for file in os.listdir(directory):
 
 
 with open("/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/set/mouth.scd", "w+", encoding="utf-8") as scdfile:
-    mouthlines.append("(\n~pb_amp = 0.5;\n~pb_rate = 1/1;\n\n")
+    mouthlines.append(f"(\n~pb_out = {pb_out};\n~pb_amp = {pb_amp};\n~pb_rate = {pb_rate};\n~pb_dur = {pb_dur};\n\n")
     
     for wavfile in wavfiles:
         filename, extension = os.path.splitext(os.path.basename(wavfile))
@@ -40,14 +45,14 @@ with open("/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/set/mouth.scd", 
     
     for wavfile in wavfiles:
         filename, extension = os.path.splitext(os.path.basename(wavfile))
-        mouthlines.append(f'SynthDef(\s_{filename}, {{\n\tvar snd;\n\n\tsnd = PlayBuf.ar(1, ~b_{filename}, ~pb_rate, doneAction: 2);\n\n\tOut.ar(1, snd * ~pb_amp)\n}}).add;\n\n')
+        mouthlines.append(f'SynthDef(\s_{filename}, {{\n\tvar snd;\n\n\tsnd = PlayBuf.ar(1, ~b_{filename}, ~pb_rate, doneAction: 2);\n\n\tOut.ar(~pb_out, snd * ~pb_amp)\n}}).add;\n\n')
     
-    mouthlines.append(")\n\n\n")
+    mouthlines.append(")\n\n\n\n")
 
     for wavfile in wavfiles:
         filename, extension = os.path.splitext(os.path.basename(wavfile))
         mouthlines.append(f'//{filename}{extension}\n')
-        mouthlines.append(f'(\nPdef(\p_{filename}, Pbind(\n\t\\instrument, \\s_{filename},\n\t\\dur, 1/4,\n)).play;\n)\n')
-        mouthlines.append(f'Pdef(\p_{filename}).stop;\n\n')
+        mouthlines.append(f'(\nPdef(\p_{filename}, Pbind(\n\t\\instrument, \\s_{filename},\n\t\\dur, ~pb_dur,\n)).play;\n)\n\n')
+        mouthlines.append(f'Pdef(\p_{filename}).stop;\n\n\n')
 
     scdfile.writelines(mouthlines)
