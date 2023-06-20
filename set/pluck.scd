@@ -19,7 +19,7 @@ SynthDef(\rifau, {
 
 	snd = Splay.ar(snd) * env;
 
-	snd = snd.clip2();
+	snd = snd.clip2() * 0.1;
 
 	Out.ar(out, snd * amp);
 }).add;
@@ -40,15 +40,17 @@ Pdef(\rifa, Pbind(
 		freqs.yield;
 	}}),
 
-	\amp, 0.0,
 	// \amp, 1.0,
+	\amp, 0.5,
+	// \amp, 0.2,
+	\amp, 0.0,
 
 	// \dur, 1/5,
-	\dur, Pseq([Pbjorklund2(3, 7)] * 1/6, inf),
+	\dur, Pseq([Pbjorklund2(8, 9)] * 1/9, inf),
 	\atk, 1/20,
 	\sus, 1/2,
 
-	\amp, 1/24,
+	// \amp, 1/24,
 	\fac, Prand([1.0, 2.0, 0.5, 0.25, 4, 2.5, 0.1, 3.0], inf),
 	\dist, 5,
 	\wv_ls, 50,
@@ -57,5 +59,6 @@ Pdef(\rifa, Pbind(
 
 Pdef(\rifa).fadeTime = 5;
 Pdef(\rifa).fadeTime = 10;
+Pdef(\rifa).fadeTime = 20;
 
 Pdef(\rifa).stop;

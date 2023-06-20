@@ -89,7 +89,7 @@ with open(supercollider_mouth_path, "w+", encoding="utf-8") as scdfile:
         filename, extension = os.path.splitext(os.path.basename(wavfile))
         mouthlines.append(f'SynthDef(\s_{filename}, {{\n\tvar snd;\n\n\tsnd = PlayBuf.ar(1, ~b_{filename}, ~pb_rate, doneAction: 2);\n\n\tOut.ar(~pb_out, snd * ~pb_amp)\n}}).add;\n\n')
     
-    mouthlines.append(")\n\n\n\n")
+    mouthlines.append(")\n\n\n//##################################################\n//Pdefs\n\n")
 
     for wavfile in wavfiles:
         filename, extension = os.path.splitext(os.path.basename(wavfile))

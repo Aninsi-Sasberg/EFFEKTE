@@ -32,28 +32,30 @@ var fil = Array.interpolation(100, 40, 25 + (24 * 4));
 Pdef(\bass, Pbind(
 	\instrument, \bass,
 
-	// \amp, 0.0,
+	// \amp, 0.38,
+	\amp, 0.30,
+	// \amp, 0.25,
+	// \amp, 0.1,
 	\amp, 0.0,
-	// \amp, 0.25,
-	// \amp, 0.25,
-	\midinote, Pseq([30, 32, 33, 37, 35, 42, 18] + 1 - 0, inf),
+	\midinote, Pseq([25, 27, 28, 32, 30, 37, 13] + 0 - 0, inf),
 	// \midinote, Prand([0, 2, 3, 7, 5, 12, -12] + 25 + 12 - 0, inf),
 	// \midinote, Pseq([0, 2, 3, 5, 7, 8] + 25 + 0, inf),
 	// \midinote, 25,
 
 	// \dur, 1/12,
-	\dur, 1/6,
+	\dur, 1/16,
 	// \dur, Pseq([Pbjorklund2(7, 9) * 1/16], inf),
 
-	// \filfreq, Prand((fil ++ fil.reverse).midicps, inf),
-	\filfreq, Pseq(((fil ++ fil.reverse) + 0).midicps, inf),
+	\filfreq, Prand((fil ++ fil.reverse).midicps, inf),
+	// \filfreq, Pseq(((fil ++ fil.reverse) + 0).midicps, inf),
 	// \filfreq, Pseq(([fil, fil.reverse].lace(50)).midicps, inf),
 
 	\atk, 1/100,
-	\sus, 1/64,
+	\sus, 1/3,
 	\v_suss, 1/8,
 
-	\dist, 7,
+	\dist, 1.0,
+	// \dist, 0.5,
 	// \dist, 2,
 	// \dist, 10,
 	// \dist, 30,
@@ -62,6 +64,7 @@ Pdef(\bass, Pbind(
 )).play(l);
 )
 
+Pdef(\bass).fadeTime = 2;
 Pdef(\bass).fadeTime = 5;
 Pdef(\bass).fadeTime = 20;
 
