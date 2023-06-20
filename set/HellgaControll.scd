@@ -1,66 +1,59 @@
 // panic control
-
 ~startingPosition.();
-~bodyPressure.(0);
+~bodyPressure.(70);
 
-
-// hellga solo control
-
+// startup
+v = s.volume;
 Tdef.defaultQuant = 4;
+~startingPosition.();
 
-// solo start
+// start
+~speak.();
+~startingPosition.();
+Tdef(\hellgaBreathing).play(argClock: l, quant: 1);
+
+// solo
+(
+v.mute;
+~startingPosition.();
+Tdef(\hellgaBreathing).stop;
+~look.(1);
 Tdef(\hellgaSolo).play(argClock: l, quant: 1);
+Tdef(\hellgaSoloMovement).play(argClock: l, quant: 1);
+)
 
-// solo stop
+// end
+(
+Tdef(\hellgaHipHopCircle).stop;
+Tdef(\hellgaSolo).stop;
+v.mute;
+~bodyTurn.(64);
+~bodyPressure.(70);
+~look.(0);
+~speak.();
+)
+
+~startingPosition.()
+
+
+
+
+
+
+//------------------
+//------------------
+//------------------
+
+// solo emergency stop
 (
 Tdef(\hellgaSolo).stop;
-~releaseAll.(3,1);
-)
-
-
-// movement control
-
+Tdef(\hellgaSoloMovement).stop;
+~releaseAll.(3,2);
+~dampAllPermanent.();
 ~startingPosition.();
-
-(
-~headDown.(0);
-~leanDown.(1);
-~gitTilt.(1);
 )
 
-(
-~headDown.(1);
-~gitTilt.(0);
-)
 
-~leanDownTilt.();
-
-
-//test Click
-
-(
-Tdef(\hellgaSolo).play(argClock: l, quant: 1);
-(
-Pdef(\pattern,
-	Pbind(
-		\instrument, \imp,
-		\dur, 1/4,
-		\amp, 1,
-	)
-).play(argClock: l);
-)
-
-(
-SynthDef(\imp, {
-	|out = 0, amp = 0.9|
-	var snd, env;
-
-	env = Env.perc(0.001, 0.1).ar(2, gate: Impulse.ar(1));
-	snd = SinOsc.ar(2000) * env;
-	Out.ar(out, snd * amp);
-}).add;
-)
-)
 
 
 

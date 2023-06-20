@@ -8,7 +8,7 @@ MIDIClient.init;
 ~channel = 5;
 ~channelVolume = 14;
 MIDIClient.init;
-m = MIDIOut.new(0);
+m = MIDIOut.new(2);
 //m = MIDIOut.newByName("MidiGateway", "MidiGateway");
 (
 CmdPeriod.add({
@@ -222,6 +222,14 @@ CmdPeriod.add({
 		m.noteOff(~channel, 6 + (i % 6), 1);
 	};
 });
+
+(
+~dampAllPermanent = {
+	6.do{ arg i;
+		m.noteOn(~channel, 6 + (i % 6), 1);
+	};
+});
+
 (
 ~gripdampalloffbut = { arg string;
 	6.do{ arg i;
