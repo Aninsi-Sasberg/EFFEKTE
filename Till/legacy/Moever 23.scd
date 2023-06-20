@@ -1,7 +1,6 @@
 // === Hellga Movement Functions === \\
 
 (
-(
 Tdef(\hellgaHeadBang, {
 	loop({
 		~headDown.(1);
@@ -10,10 +9,11 @@ Tdef(\hellgaHeadBang, {
 		(4/4).wait;
 	});
 });
-);
+)
 
 (
 Tdef(\hellgaHeadKnod, {
+
 	loop({
 		~look.(1);
 	    (1/8).wait;
@@ -21,35 +21,7 @@ Tdef(\hellgaHeadKnod, {
 		(1/8).wait;
 	});
 });
-);
-
-(Tdef(\hellgaBreathing, {
-	var choice;
-	var waitT = 0.5;
-	~bodyPressure.(45);
-	loop({
-		choice = [1,2,3].wchoose([0.6,0.2,0.2]);
-		if(choice == 1,{
-			~bodyTurn.(20);
-			waitT.wait;
-			~bodyTurn.(64);
-			waitT.wait;
-		});
-		if(choice == 2,{
-			~bodyForward.(20);
-			waitT.wait;
-			~bodyForward.(64);
-			waitT.wait;
-		});
-		if(choice == 3,{
-			~bodySide.(20);
-			waitT.wait;
-			~bodySide.(64);
-			waitT.wait;
-		});
-	});
-});
-);
+)
 
 (
 Tdef(\hellgaSoloMovement, {
@@ -136,49 +108,37 @@ Tdef(\hellgaSoloMovement, {
 		0.5.wait;
 		8.do{
 			~look.(3);
-			0.25.wait;
+			~gitRock.(1);
+			0.125.wait;
 			~look.(1);
-			0.25.wait;
+			~gitRock.(0);
+			0.125.wait;
 		};
-		8.do{
-			~gitTilt.(1);
+		16.do{
 			~look.(3);
-			0.25.wait;
-			~gitTilt.(0);
+			~gitTilt.(1);
+			~bodyForward.(0);
+			0.125.wait;
 			~look.(1);
-			0.25.wait;
+			~gitTilt.(0);
+			0.125.wait;
+			~look.(3);
+			~gitTilt.(1);
+			~bodyForward.(64);
+			0.125.wait;
+			~look.(1);
+			~gitTilt.(0);
+			0.125.wait;
 		};
 		~speak.();
-		2.wait;
+		1.wait;
 		~bodyTurn.(0);
 		1.wait;
 		~look.(1);
-		~bodyPressure.(64);
-		Tdef(\hellgaHipHopCircle).play(argClock: l, quant: 1);
+		1.wait;
 	}
 });
-);
-
-(
-~hipHopCHelper = {
-		Tdef(\hellgaHipHopCircle).play(argClock: l, quant: 1);
-});
-
-(
-Tdef(\hellgaHipHopCircle,{
-	var waitT = 0.5;
-	loop({
-		~look.(0);
-		waitT.wait;
-		~look.(1);
-		waitT.wait;
-		~look.(2);
-		waitT.wait;
-		~look.(3);
-		waitT.wait;
-	});
-});
-);
+)
 
 (
 (
@@ -224,20 +184,11 @@ Tdef(\hellgaHipHopCircle,{
 	~legShort.(0);
 	~legLong.(1);
 });
-);
+
 )
 
 
-
-
-
-
-
-//--------------------
-//--------------------
-//--------------------
-
-// old
+//old
 
 (
 ~lookUp = {

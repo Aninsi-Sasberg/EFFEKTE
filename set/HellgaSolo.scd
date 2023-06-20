@@ -6,8 +6,6 @@ Tdef(\hellgaSolo,{
 	// timing offset
 	var waitT = 1/16;
 
-	var noteT = 0.05;
-
 	~moveHand.(1,0);
 	~moveHand.(0,2);
 	~setFingers.(0,1);
