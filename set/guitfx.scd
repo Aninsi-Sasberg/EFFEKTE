@@ -11,7 +11,7 @@ SynthDef(\fx, {
 	del_mod = SinOsc.ar(0.2);
 
 	// Guitar Signal
-	snd = SoundIn.ar(4);
+	snd = SoundIn.ar(0);
 
 	snd = CrossoverDistortion.ar(snd, 2, 0.1, 4);
 
@@ -19,7 +19,7 @@ SynthDef(\fx, {
 
 	// snd = BLowPass4.ar(snd, mod * vib, 0.01) * 1/8 + snd;
 
-	snd = (GVerb.ar(snd, 10, v_suss, 0.2, 0.2, 30, 1.0) * 0.3) + (snd * 0.5);
+	snd = (GVerb.ar(snd, 10, v_suss, 0.2, 0.2, 30, 1.0) * 0.13) + (snd * 0.5);
 
 	snd = [DelayC.ar(snd, 0.04, mod.range(0.04, 0.01)), DelayC.ar(snd, 0.02, mod.range(0.01, 0.02))];
 
