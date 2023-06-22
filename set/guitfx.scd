@@ -1,7 +1,7 @@
 // DON'T
 (
 SynthDef(\fx, {
-	arg out = 8, amp = 0, v_suss = 4;
+	arg out = 2, amp = 0, v_suss = 4;
 	var snd, env, mod, vib, del_mod;
 
 	mod = LFTri.kr(1/6, 3).range((25 - 12).midicps, (25 + 12).midicps);
@@ -11,7 +11,7 @@ SynthDef(\fx, {
 	del_mod = SinOsc.ar(0.2);
 
 	// Guitar Signal
-	snd = SoundIn.ar(8);
+	snd = SoundIn.ar(4);
 
 	snd = CrossoverDistortion.ar(snd, 2, 0.1, 4);
 
@@ -25,22 +25,25 @@ SynthDef(\fx, {
 
 	snd = snd.clip2(0.2) * 0.1;
 
+	// snd = SinOsc.ar(440, 0.0, 0.2);
+	// snd = WhiteNoise.ar(0.5);
+
 	Out.ar(out, snd * amp);
 }).add;
 
 
 Pdef(\guitfx, Pmono(
 	\fx,
+	// \amp, 1.3,
 	\amp, 1.0,
 	// \amp, 0.5,
 	// \amp, 0.2,
 	\amp, 0.0,
-	// \amp, 1.3,
 
 	\dur, 1/32,
 	\v_suss, 5,
 
-	\out, 8,
+	\out, 2,
 )).play(l);
 )
 

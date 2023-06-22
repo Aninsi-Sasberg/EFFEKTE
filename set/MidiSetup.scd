@@ -10,6 +10,7 @@ MIDIClient.init;
 MIDIClient.init;
 m = MIDIOut.new(2);
 //m = MIDIOut.newByName("MidiGateway", "MidiGateway");
+// m = MIDIOut.newByName("USB MIDI Device", "USB MIDI Device");
 (
 CmdPeriod.add({
 	"MIDI Note-Off".postln;

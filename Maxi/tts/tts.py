@@ -10,7 +10,8 @@ mouthlines = []
 # directory_in_str = "your/path"
 directory_in_str = "/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/Maxi/tts"
 # supercollider_mouth_path = "your/path/scdfile.scd"
-supercollider_mouth_path = "/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/set/mouth.scd"
+# supercollider_mouth_path = "/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/set/mouth.scd"
+supercollider_mouth_path = "/Users/aninsi/Desktop/PROGRAMMING/AA--Github/EFFEKTE/Maxi/rehearsal/mouth-rehearse.scd"
 
 # set global SC variables
 pb_out = "3"

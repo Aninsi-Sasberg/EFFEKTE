@@ -1,5 +1,5 @@
 (
-~pb_out = 3;
+~pb_out = 4;
 ~pb_amp = 2;
 ~pb_rate = 1/5;
 ~pb_dur = 2;

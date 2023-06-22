@@ -33,25 +33,27 @@ Pdef(\bass, Pbind(
 	\instrument, \bass,
 
 	// \amp, 0.38,
-	\amp, 0.30,
-	// \amp, 0.25,
+	// \amp, 0.30,
+	\amp, 0.25,
+	// \amp, 0.18,
 	// \amp, 0.1,
 	\amp, 0.0,
+
 	\midinote, Pseq([25, 27, 28, 32, 30, 37, 13] + 0 - 0, inf),
 	// \midinote, Prand([0, 2, 3, 7, 5, 12, -12] + 25 + 12 - 0, inf),
 	// \midinote, Pseq([0, 2, 3, 5, 7, 8] + 25 + 0, inf),
 	// \midinote, 25,
 
-	// \dur, 1/12,
-	\dur, 1/16,
-	// \dur, Pseq([Pbjorklund2(7, 9) * 1/16], inf),
+	\dur, 1/6,
+	// \dur, 1/16,
+	// \dur, Pseq([Pbjorklund2(7, 9) * 1/6], inf),
 
-	\filfreq, Prand((fil ++ fil.reverse).midicps, inf),
-	// \filfreq, Pseq(((fil ++ fil.reverse) + 0).midicps, inf),
+	// \filfreq, Prand((fil ++ fil.reverse).midicps, inf),
+	\filfreq, Pseq(((fil ++ fil.reverse) + 0).midicps, inf),
 	// \filfreq, Pseq(([fil, fil.reverse].lace(50)).midicps, inf),
 
 	\atk, 1/100,
-	\sus, 1/3,
+	\sus, 1/6,
 	\v_suss, 1/8,
 
 	\dist, 1.0,

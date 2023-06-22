@@ -46,7 +46,7 @@ Pdef(\rifa, Pbind(
 	\amp, 0.0,
 
 	// \dur, 1/5,
-	\dur, Pseq([Pbjorklund2(8, 9)] * 1/9, inf),
+	\dur, Pseq([Pbjorklund2(7, 9)] * 1/6, inf),
 	\atk, 1/20,
 	\sus, 1/2,
 
